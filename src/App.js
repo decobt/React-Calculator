@@ -3,20 +3,54 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    //set default value for result to 0
+    this.state = {
+      result : '0'
+    }
+  }
+  buttonPress(i){
+    //check if equal button is pressed
+    if( i === '='){
+      //if yes, evaluate the expression and update state
+      this.setState({
+        // eslint-disable-next-line
+        result: eval(this.state.result).toString()
+      });
+    }else{
+      //else if not, check if there is only 0 displayed
+      if(Number.isInteger(i) && this.state.result === '0'){
+        //if yes, update the state to be a digit and not start with 0
+        this.setState({
+          result: i.toString()
+        });
+      }else{
+        //else update the expression with operator sign
+        this.setState({
+          result: this.state.result + i
+        });
+      }
+    }
+  }
+  clearResult(){
+    //clear the result by setting it to 0
+    this.setState({
+      result: '0'
+    });
+  }
   render() {
     var rows = [];
-    var values = [1,2,3,'-','+',4,5,6,'/','*',7,8,9,'0','=']
+    var values = [7,8,9,'+',4,5,6,'-',1,2,3,'/',0,'.','=','*']
     for(var i of values){
-      if(Number.isInteger(i)){
-        rows.push(<div className="col-sm-2 numButton"><h1>{i}</h1></div>);
-      }else{
-        rows.push(<div className="col-sm-3 optButton"><h1>{i}</h1></div>);
-      }
+      rows.push(<div className="col-xs-3 padButton" key={i} onClick={this.buttonPress.bind(this, i)}><h1>{i}</h1></div>);
     }
     return (
       <div className="App">
         <div className="row">
-          <div className="col-sm-12 display"><h1>0</h1></div>
+          <div className="col-sm-12 display">
+            <h1>{this.state.result}</h1>
+          </div>
           {rows}
         </div>
       </div>
