@@ -47,10 +47,15 @@ class App extends Component {
     }
     return (
       <div className="App">
+          <div className="row display">
+            <div className="col-xs-4 col-sm-2">
+              <h1><button onClick={this.clearResult.bind(this)} className="btn btn-primary btn-lg btn-block">Clear</button></h1>
+            </div>
+            <div className="col-xs-8 col-sm-10 text-right">
+              <h1>{this.state.result}</h1>
+            </div>
+        </div>
         <div className="row">
-          <div className="col-sm-12 display">
-            <h1>{this.state.result}</h1>
-          </div>
           {rows}
         </div>
       </div>
