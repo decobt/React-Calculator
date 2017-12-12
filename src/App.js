@@ -7,7 +7,8 @@ class App extends Component {
     super(props);
     //set default value for result to 0
     this.state = {
-      result : '0'
+      result : '0',
+      memory: ''
     }
   }
   buttonPress(i){
@@ -39,6 +40,27 @@ class App extends Component {
       result: '0'
     });
   }
+  clearMemory(){
+    //clear the memory by setting it to empty
+    this.setState({
+      memory: ''
+    });
+    //console.log('clear: '+this.state.memory);
+  }
+  storeMemory(){
+    //store to memory the result of the expression
+    this.setState({
+      memory: eval(this.state.result).toString()
+    });
+    //console.log('memory-store: '+eval(this.state.result).toString());
+  }
+  recallMemory(){
+    //add from memory the value stored to the one displayed
+    this.setState({
+      result: this.state.result.toString() + this.state.memory.toString()
+    });
+    //console.log('memory-recall: '+this.state.result.toString() + this.state.memory.toString());
+  }
   render() {
     var rows = [];
     var values = [7,8,9,'+',4,5,6,'-',1,2,3,'/',0,'.','=','*']
@@ -48,10 +70,18 @@ class App extends Component {
     return (
       <div className="App">
           <div className="row display">
-            <div className="col-xs-4 col-sm-2">
-              <h1><button onClick={this.clearResult.bind(this)} className="btn btn-primary btn-lg btn-block">Clear</button></h1>
+            <div className="col-xs-6 col-sm-5 col-md-4">
+              <h1>
+              <div className="btn-group" role="group" aria-label="...">
+                <button onClick={this.clearResult.bind(this)} className="btn btn-lg btn-primary">CE</button>
+                <button onClick={this.recallMemory.bind(this)} type="button" className="btn btn-lg btn-primary">MR</button>
+                <button onClick={this.storeMemory.bind(this)} type="button" className="btn btn-lg btn-primary">MS</button>
+                <button onClick={this.clearMemory.bind(this)}  type="button" className="btn btn-lg btn-primary">MC</button>
+              </div>
+
+              </h1>
             </div>
-            <div className="col-xs-8 col-sm-10 text-right">
+            <div className="col-xs-6 col-sm-7 col-md-8 text-right">
               <h1>{this.state.result}</h1>
             </div>
         </div>
