@@ -11,6 +11,7 @@ class App extends Component {
       memory: ''
     }
   }
+
   buttonPress(i){
     //check if equal button is pressed
     if( i === '='){
@@ -34,12 +35,14 @@ class App extends Component {
       }
     }
   }
+
   clearResult(){
     //clear the result by setting it to 0
     this.setState({
       result: '0'
     });
   }
+
   clearMemory(){
     //clear the memory by setting it to empty
     this.setState({
@@ -47,6 +50,7 @@ class App extends Component {
     });
     //console.log('clear: '+this.state.memory);
   }
+  
   storeMemory(){
     //store to memory the result of the expression
     this.setState({
@@ -54,6 +58,7 @@ class App extends Component {
     });
     //console.log('memory-store: '+eval(this.state.result).toString());
   }
+
   recallMemory(){
     //add from memory the value stored to the one displayed
     this.setState({
@@ -61,31 +66,36 @@ class App extends Component {
     });
     //console.log('memory-recall: '+this.state.result.toString() + this.state.memory.toString());
   }
+
   render() {
     var rows = [];
     var values = [7,8,9,'+',4,5,6,'-',1,2,3,'/',0,'.','=','*']
     for(var i of values){
-      rows.push(<div className="col-xs-3 padButton" key={i} onClick={this.buttonPress.bind(this, i)}><h1>{i}</h1></div>);
+      if( ['-','+','/','*'].includes(i)){
+        rows.push(<div className="padButton opButton" key={i} onClick={this.buttonPress.bind(this, i)}><span>{i}</span></div>);
+      }else if( i == '='){
+        rows.push(<div className="padButton eqButton" key={i} onClick={this.buttonPress.bind(this, i)}><span>{i}</span></div>);
+      }else{
+      rows.push(<div className="padButton" key={i} onClick={this.buttonPress.bind(this, i)}><span>{i}</span></div>);
+      }
     }
     return (
       <div className="App">
-          <div className="row display">
-            <div className="col-xs-6 col-sm-5 col-md-4">
-              <h1>
-              <div className="btn-group" role="group" aria-label="...">
-                <button onClick={this.clearResult.bind(this)} className="btn btn-lg btn-primary">CE</button>
-                <button onClick={this.recallMemory.bind(this)} type="button" className="btn btn-lg btn-primary">MR</button>
-                <button onClick={this.storeMemory.bind(this)} type="button" className="btn btn-lg btn-primary">MS</button>
-                <button onClick={this.clearMemory.bind(this)}  type="button" className="btn btn-lg btn-primary">MC</button>
-              </div>
 
-              </h1>
-            </div>
-            <div className="col-xs-6 col-sm-7 col-md-8 text-right">
-              <h1>{this.state.result}</h1>
-            </div>
+        <div className="display">
+          <div className="text-right">
+            <h1>{this.state.result}</h1>
+          </div>
         </div>
-        <div className="row">
+
+        <div className="pad">
+          <div onClick={this.clearResult.bind(this)} className="padButton opButton"><span>CE</span></div>
+          <div onClick={this.recallMemory.bind(this)} className="padButton opButton"><span>MR</span></div>
+          <div onClick={this.storeMemory.bind(this)} className="padButton opButton"><span>MS</span></div>
+          <div onClick={this.clearMemory.bind(this)}  className="padButton opButton"><span>MC</span></div>
+        </div>
+        
+        <div className="pad text-center">
           {rows}
         </div>
       </div>

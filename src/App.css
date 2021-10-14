@@ -1,48 +1,87 @@
+body{
+  background: #8ec2fe;
+}
+
+#root{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+}
+
 .App {
-  text-align: center;
+  max-width: 320px;
+  background: #ffffff;
+  box-shadow: 5px 5px 20px #222;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.pad{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.padButton,
+.opButton{
+  width: 25%;
+}
+.padButton span{
+  text-decoration: none;
+  color: #1d1d1d;
+  font-weight: bold;
+  background-color: #efefef;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  padding: 16px 22px;
+  margin:3px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.opButton span{
+  color: #ae9342;
+  background-color: #fcefc3;
+}
+.eqButton span{
+  color: #c98e10;
+  background-color: #fcc334;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.padButton span:hover{
+  background-color: #fcefc3;
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.eqButton span:hover,
+.opButton span:hover{
+  color: #c98e10;
+  background-color: #fcc334;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-.padButton{
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    background-color: #538fbe;
-    padding: 20px 0px;
-    font-size: 24px;
-    border: 1px solid #2d6898;
-}
-.padButton:hover{
-    background-color: #2d6898;
-}
 .display{
-  background:#bdc3c7;
-  border-bottom:5px solid #95a5a6;
-  padding:30px 10px;
+  background:#e2e2e2;
+  margin: 3px;
+  padding:42px 10px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
+
 .display h1{
   font-size:52px;
+  color: #1d1d1d;
+  margin-bottom: 0;
 }
