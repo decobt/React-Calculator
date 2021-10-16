@@ -5,6 +5,9 @@ A simple calculator build using React.js
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+## Demo
+
+[LIVE DEMO](https://calculatorc.herokuapp.com "React Calculator")
 
 ## Installation
 
@@ -27,4 +30,8 @@ npm start
 
 ## Authors
 
-* **Trayche Roshkoski** - *Initial work* - (https://trajcheroshkoski.com/)
+* **Trayche Roshkoski** - *Initial work* - (https://traycheroshkoski.com/)
+
+## Screenshots
+
+![App Screenshot](https://raw.githubusercontent.com/decobt/React-Calculator/master/screenshots/image1.png)
